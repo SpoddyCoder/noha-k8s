@@ -1,4 +1,7 @@
-# `noha-k8s` - low cost kubernetes ingress without a load balancer
+`noha-k8s`
+==========
+Low cost kubernetes ingress without a load balancer
+---------------------------------------------------
 
 `noha-k8s` outlines an anti-pattern to deploy a kubernetes cluster on any host / cloud provider (AWS, Azure, GCP etc.) with http/https ingress, but no load balancer.
 This means a single node cluster running some light workloads could run for as little as $6 p/m. (cloud LB's typically cost ~$20 p/m+)
@@ -20,6 +23,11 @@ But for *cost-sensitive*, non-HA use cases - and learning - this is ideal. It's 
     * If you get to the point where you're thinking of scaling the master nodes, you have outgrown this anti-pattern
 * Flannel used as the overlay network
     * Calico also tested - see known issues
+    
+
+## Build cluster
+
+Skip this section if you know how to deploy a basic kubernetes cluster.
 
 ### Requirements / Pre-requisites
 
@@ -28,11 +36,6 @@ But for *cost-sensitive*, non-HA use cases - and learning - this is ideal. It's 
 * A public IP bound to the master node
 * Working routes between master and worker nodes for the k8s port ranges
     * https://kubernetes.io/docs/reference/ports-and-protocols/
-
-
-## Build cluster
-
-Skip this section if you know how to deploy a basic kubernetes cluster.
 
 ### Install packages on nodes
 
@@ -132,12 +135,12 @@ But with some tweaks...
 Apply the modified ingress-nginx-controller manifest...
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/SpoddyCoder/noha-k8s/master/deploy/ingress-nginx-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/SpoddyCoder/noha-k8s/main/deploy/ingress-nginx-controller.yaml
 ```
 
-See the diff between the original and modified here...
+Diff between the original and modified manifests...
 
-https://github.com/blah
+https://github.com/SpoddyCoder/noha-k8s/commit/3577b3d0339bacc2c6ecede0f4b8640268791266
 
 
 ## Deploy an app
